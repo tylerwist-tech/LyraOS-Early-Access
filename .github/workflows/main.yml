@@ -9,8 +9,8 @@ jobs:
         with:
           node-version: '18'
       - run: npm install
-      - run: npm run build
+      - run: npm run make
       - uses: actions/upload-artifact@v4
         with:
           name: LyraOS-App
-          path: dist/*.exe
+          path: out/make/**/*.exe
