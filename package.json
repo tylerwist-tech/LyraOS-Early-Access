@@ -1,17 +1,12 @@
 {
   "name": "mein-lyra-os",
-  "productName": "mein-lyra-os",
   "version": "1.0.0",
-  "description": "My Electron application description",
-  "main": ".webpack/main",
-  "private": true,
- "scripts": {
-  "start": "electron .",
-  "build": "electron-builder"
-},
-  "keywords": [],
-  "author": "Tyler",
-  "license": "MIT",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "make": "electron-forge make"
+  },
   "devDependencies": {
     "@electron-forge/cli": "^7.11.2",
     "@electron-forge/maker-deb": "^7.11.2",
@@ -26,7 +21,8 @@
     "css-loader": "^6.11.0",
     "electron": "42.4.0",
     "node-loader": "^2.1.0",
-    "style-loader": "^3.3.4"
+    "style-loader": "^3.3.4",
+    "electron-builder": "^24.9.1"
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.1"
