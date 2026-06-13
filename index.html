@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lyra OS V3 - Vision Edition</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-outline" id="cursor-outline"></div>
+
+    <div id="login-screen" class="login-wrapper">
+        <div class="login-box glass-panel">
+            <div class="login-logo-badge glass-btn">Lyra OS <span class="v-tag">V3</span></div>
+            <div class="lyra-logo-container hover-target">L</div>
+            <h2 class="welcome-text">Willkommen zurück</h2>
+            <input type="text" id="username" class="login-input glass-input hover-target" placeholder="Benutzername (Admin)">
+            <input type="password" id="password" class="login-input glass-input hover-target" placeholder="Passwort">
+            <button class="login-btn hover-target" onclick="checkLogin()">Einloggen</button>
+            <p id="login-error" class="error-msg">Falscher Benutzer oder Passwort!</p>
+        </div>
+    </div>
+
+    <div id="os-workspace" style="display: none;">
+        
+        <div class="top-bar glass-panel">
+            <div class="logo">LyraOS</div>
+            <div class="status-indicator">V3</div>
+        </div>
+
+        <div class="desktop-area">
+            <div class="desktop-icon hover-target" onclick="openApp('notepad')">
+                <div class="icon-emoji">📝</div>
+                <span>Notizen</span>
+            </div>
+            <div class="desktop-icon hover-target" onclick="openApp('terminal')">
+                <div class="icon-emoji">💻</div>
+                <span>Terminal</span>
+            </div>
+            <div class="desktop-icon hover-target" onclick="openApp('tictactoe')">
+                <div class="icon-emoji">🎮</div>
+                <span>Tic Tac Toe</span>
+            </div>
+        </div>
+
+        <div id="os-dialog-overlay" class="dialog-overlay" style="display: none;">
+            <div class="os-dialog glass-panel">
+                <div class="dialog-title" id="dialog-title">System Info</div>
+                <div class="dialog-content" id="dialog-content">Nachricht hier</div>
+                <button class="dialog-btn glass-btn hover-target" id="dialog-ok">OK</button>
+            </div>
+        </div>
+
+        <div class="window glass-panel" id="notepad" style="top: 80px; left: 100px; width: 500px; height: 600px;">
+            <div class="window-header">
+                <div class="controls">
+                    <div class="btn btn-close hover-target" onclick="closeApp('notepad')"></div>
+                    <div class="btn btn-max hover-target" onclick="maxApp('notepad')"></div>
+                </div>
+                <div class="title">Notizen</div>
+            </div>
+            <div class="window-content">
+                <textarea class="glass-input hover-target" placeholder="Schreibe hier deine Ideen auf..."></textarea>
+            </div>
+            <div class="vision-handle hover-target"></div>
+        </div>
+
+        <div class="window glass-panel" id="calculator" style="top: 100px; left: 400px; width: 400px; height: 550px;">
+            <div class="window-header">
+                <div class="controls">
+                    <div class="btn btn-close hover-target" onclick="closeApp('calculator')"></div>
+                    <div class="btn btn-max hover-target" onclick="maxApp('calculator')"></div>
+                </div>
+                <div class="title">Pro Rechner</div>
+            </div>
+            <div class="window-content calc-bg">
+                <div class="calc-display glass-panel" id="calc-display">0</div>
+                <div class="calc-history" id="calc-history"></div>
+                <div class="calc-grid">
+                    <button class="calc-btn glass-btn special-btn hover-target" onclick="calcInput('Math.sin(')">sin</button>
+                    <button class="calc-btn glass-btn special-btn hover-target" onclick="calcInput('Math.cos(')">cos</button>
+                    <button class="calc-btn glass-btn special-btn hover-target" onclick="calcInput('Math.sqrt(')">√</button>
+                    <button class="calc-btn glass-btn special-btn hover-target" onclick="calcInput('**')">xʸ</button>
+                    <button class="calc-btn glass-btn danger-btn hover-target" onclick="calcClear()">AC</button>
+                    
+                    <button class="calc-btn glass-btn special-btn hover-target" onclick="calcInput('(')">(</button>
+                    <button class="calc-btn glass-btn special-btn hover-target" onclick="calcInput(')')">)</button>
+                    <button class="calc-btn glass-btn special-btn hover-target" onclick="calcInput('%')">%</button>
+                    <button class="calc-btn glass-btn special-btn hover-target" onclick="calcInput('/')">÷</button>
+                    <button class="calc-btn glass-btn hover-target" onclick="calcInput('7')">7</button>
+                    
+                    <button class="calc-btn glass-btn hover-target" onclick="calcInput('8')">8</button>
+                    <button class="calc-btn glass-btn hover-target" onclick="calcInput('9')">9</button>
+                    <button class="calc-btn glass-btn special-btn hover-target" onclick="calcInput('*')">×</button>
+                    <button class="calc-btn glass-btn hover-target" onclick="calcInput('4')">4</button>
+                    <button class="calc-btn glass-btn hover-target" onclick="calcInput('5')">5</button>
+                    
+                    <button class="calc-btn glass-btn hover-target" onclick="calcInput('6')">6</button>
+                    <button class="calc-btn glass-btn special-btn hover-target" onclick="calcInput('-')">-</button>
+                    <button class="calc-btn glass-btn hover-target" onclick="calcInput('1')">1</button>
+                    <button class="calc-btn glass-btn hover-target" onclick="calcInput('2')">2</button>
+                    <button class="calc-btn glass-btn hover-target" onclick="calcInput('3')">3</button>
+                    
+                    <button class="calc-btn glass-btn special-btn hover-target" onclick="calcInput('+')">+</button>
+                    <button class="calc-btn glass-btn hover-target" onclick="calcInput('0')" style="grid-column: span 2;">0</button>
+                    <button class="calc-btn glass-btn hover-target" onclick="calcInput('.')">.</button>
+                    <button class="calc-btn glass-btn action-btn hover-target" onclick="calcResult()">=</button>
+                </div>
+            </div>
+            <div class="vision-handle hover-target"></div>
+        </div>
+
+        <div class="window glass-panel" id="tictactoe" style="top: 150px; left: 300px; width: 350px; height: 460px;">
+            <div class="window-header">
+                <div class="controls">
+                    <div class="btn btn-close hover-target" onclick="closeApp('tictactoe')"></div>
+                    <div class="btn btn-max hover-target" onclick="maxApp('tictactoe')"></div>
+                </div>
+                <div class="title">Tic Tac Toe</div>
+            </div>
+            <div class="window-content">
+                <div class="tictactoe-grid" id="tic-grid"></div>
+            </div>
+            <div class="vision-handle hover-target"></div>
+        </div>
+
+        <div class="window glass-panel" id="terminal" style="top: 200px; left: 150px; width: 600px; height: 400px;">
+            <div class="window-header">
+                <div class="controls">
+                    <div class="btn btn-close hover-target" onclick="closeApp('terminal')"></div>
+                    <div class="btn btn-max hover-target" onclick="maxApp('terminal')"></div>
+                </div>
+                <div class="title">Terminal</div>
+            </div>
+            <div class="window-content terminal-body glass-input">
+                <div id="terminal-output">LyraOS Core V3 loaded.<br>Tippe 'help' für Befehle.</div>
+                <div class="terminal-input-line">
+                    <span>lyra@admin:~$&nbsp;</span>
+                    <input type="text" id="term-input" class="hover-target" autocomplete="off">
+                </div>
+            </div>
+            <div class="vision-handle hover-target"></div>
+        </div>
+
+        <div class="window glass-panel" id="python" style="top: 150px; left: 550px; width: 650px; height: 500px;">
+            <div class="window-header">
+                <div class="controls">
+                    <div class="btn btn-close hover-target" onclick="closeApp('python')"></div>
+                    <div class="btn btn-max hover-target" onclick="maxApp('python')"></div>
+                </div>
+                <div class="title">Python IDE</div>
+            </div>
+            <div class="window-content python-layout">
+                <div class="py-toolbar glass-panel">
+                    <button class="glass-btn hover-target run-btn" onclick="runPython()">▶ Ausführen</button>
+                    <button class="glass-btn hover-target" onclick="document.getElementById('py-code').value=''">Löschen</button>
+                </div>
+                <textarea id="py-code" class="glass-input py-textarea hover-target" spellcheck="false"># Schreibe dein Python Script hier
+print("Hallo Lyra OS V3!")
+x = 10
+y = 20
+print("Das Ergebnis von x + y ist:", x + y)</textarea>
+                <div id="py-output" class="py-console glass-panel">Konsole bereit...</div>
+            </div>
+            <div class="vision-handle hover-target"></div>
+        </div>
+
+        <div class="window glass-panel" id="settings" style="top: 250px; left: 450px; width: 500px; height: 550px;">
+            <div class="window-header">
+                <div class="controls">
+                    <div class="btn btn-close hover-target" onclick="closeApp('settings')"></div>
+                    <div class="btn btn-max hover-target" onclick="maxApp('settings')"></div>
+                </div>
+                <div class="title">Einstellungen</div>
+            </div>
+            <div class="window-content settings-content">
+                <h3>Hintergrund anpassen (Statisch)</h3>
+                <div class="color-grid">
+                    <button class="color-btn hover-target" style="background: linear-gradient(-45deg, #090314, #120b2e, #1b1950, #060d22);" onclick="changeBg('linear-gradient(-45deg, #090314, #120b2e, #1b1950, #060d22)')"></button>
+                    <button class="color-btn hover-target" style="background: linear-gradient(-45deg, #000000, #1a1a2e, #16213e, #0f3460);" onclick="changeBg('linear-gradient(-45deg, #000000, #1a1a2e, #16213e, #0f3460)')"></button>
+                    <button class="color-btn hover-target" style="background: linear-gradient(-45deg, #1f021b, #380430, #5c064e, #140111);" onclick="changeBg('linear-gradient(-45deg, #1f021b, #380430, #5c064e, #140111)')"></button>
+                    <button class="color-btn hover-target" style="background: linear-gradient(-45deg, #021f18, #04382c, #065c49, #011410);" onclick="changeBg('linear-gradient(-45deg, #021f18, #04382c, #065c49, #011410)')"></button>
+                    <button class="color-btn hover-target" style="background: linear-gradient(-45deg, #2b2b2b, #1a1a1a, #000000, #111111);" onclick="changeBg('linear-gradient(-45deg, #2b2b2b, #1a1a1a, #000000, #111111)')"></button>
+                </div>
+                
+                <h3 style="margin-top: 30px;">Cursor Farbe</h3>
+                <div class="color-grid">
+                    <button class="color-btn hover-target" style="background: #ffffff;" onclick="changeCursorColor('#ffffff')"></button>
+                    <button class="color-btn hover-target" style="background: #4ade80;" onclick="changeCursorColor('#4ade80')"></button>
+                    <button class="color-btn hover-target" style="background: #f87171;" onclick="changeCursorColor('#f87171')"></button>
+                    <button class="color-btn hover-target" style="background: #818cf8;" onclick="changeCursorColor('#818cf8')"></button>
+                    <button class="color-btn hover-target" style="background: #facc15;" onclick="changeCursorColor('#facc15')"></button>
+                </div>
+            </div>
+            <div class="vision-handle hover-target"></div>
+        </div>
+
+        <div class="dock glass-panel">
+            <div class="dock-container">
+                <div class="app-tile hover-target" onclick="openApp('settings')" title="Einstellungen">⚙️</div>
+                <div class="app-tile hover-target" onclick="openApp('terminal')" title="Terminal">💻</div>
+                <div class="app-tile hover-target" onclick="openApp('python')" title="Python Editor">🐍</div>
+                <div class="app-tile hover-target" onclick="openApp('calculator')" title="Pro Rechner">🧮</div>
+                <div class="taskbar-divider"></div>
+                <div class="clock-badge glass-btn" id="clock">00:00</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
