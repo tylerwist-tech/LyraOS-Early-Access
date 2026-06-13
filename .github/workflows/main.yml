@@ -10,8 +10,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-      - name: Clean Install
-        run: npm ci
+      - name: Install dependencies
+        run: npm install
       - name: Build
         run: npx electron-builder --win --x64
       - name: Upload
