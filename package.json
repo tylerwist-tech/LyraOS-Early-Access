@@ -1,5 +1,5 @@
 {
-  "name": "mein-lyra-os",
+  "name": "LyraOS V3 Early Access",
   "version": "1.0.0",
   "main": "main.js",
   "scripts": {
@@ -8,9 +8,13 @@
   },
   "build": {
     "appId": "com.lyraos.app",
+    "artifactName": "LyraOS V3 Early Access.exe",
     "win": {
       "target": "nsis"
     }
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.1"
   },
   "devDependencies": {
     "electron": "^28.0.0",
