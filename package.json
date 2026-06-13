@@ -5,13 +5,10 @@
   "description": "My Electron application description",
   "main": ".webpack/main",
   "private": true,
-  "scripts": {
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\""
-  },
+ "scripts": {
+  "start": "electron .",
+  "build": "electron-builder"
+},
   "keywords": [],
   "author": "Tyler",
   "license": "MIT",
