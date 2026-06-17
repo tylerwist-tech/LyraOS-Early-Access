@@ -1,5 +1,5 @@
 {
-  "name": "mein-lyra-os",
+  "name": "Lyra 3",
   "version": "1.0.0",
   "main": "main.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "build": {
     "appId": "com.lyraos.app",
-    "artifactName": "LyraOS V3 Early Access.exe",
+    "artifactName": "Lyra 3.exe",
     "win": {
       "target": "nsis"
     }
